@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BCPlayer</string>
+    <string name="play">&#xf04b;</string>
+    <string name="pause">&#xf04c;</string>
+    <string name="rewind_back"></string>
+    <string name="rewind_forward"></string>
+    <string name="copyright">created by Byters</string>
+
+</resources>

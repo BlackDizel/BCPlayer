@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ru.byters.pages.MainFragment">
+
+    <!--region buttons-->
+    <Button
+        android:id="@+id/btPlay"
+        android:layout_width="@dimen/button_play_size"
+        android:layout_height="@dimen/button_play_size"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="@dimen/button_play_margin"
+        android:layout_marginStart="@dimen/button_play_margin"
+        android:background="@drawable/round_button"
+        android:paddingStart="5dp"
+        android:text="@string/play"
+        android:textColor="@color/accentColor"
+        android:textSize="@dimen/button_play_text_size" />
+
+    <Button
+        android:id="@+id/btSkipLeft"
+        android:layout_width="@dimen/button_rewind_size"
+        android:layout_height="@dimen/button_rewind_size"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/btPlay"
+        android:background="@drawable/round_button"
+        android:text="@string/rewind_back"
+        android:textColor="@color/accentColor"
+        android:textSize="@dimen/button_rewind_text_size" />
+
+    <Button
+        android:id="@+id/btSkipRight"
+        android:layout_width="@dimen/button_rewind_size"
+        android:layout_height="@dimen/button_rewind_size"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/btPlay"
+        android:background="@drawable/round_button"
+        android:text="@string/rewind_forward"
+        android:textColor="@color/accentColor"
+        android:textSize="@dimen/button_rewind_text_size" />
+
+    <!-- endregion-->
+
+    <SeekBar
+        android:id="@+id/sbSong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btPlay"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tvSongDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/sbSong"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:text="00:00" />
+
+    <TextView
+        android:id="@+id/tvSongCurrentPos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/sbSong"
+        android:layout_marginStart="16dp"
+        android:text="00:00" />
+
+    <TextView
+        android:id="@+id/tvSongName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tvSongCurrentPos"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:text="title" />
+
+</RelativeLayout>

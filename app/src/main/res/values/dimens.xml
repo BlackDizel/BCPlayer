@@ -1,0 +1,11 @@
+<resources>
+
+    <dimen name="button_play_size">128dp</dimen>
+    <dimen name="button_rewind_size">64dp</dimen>
+    <dimen name="button_rewind_text_size">24sp</dimen>
+    <dimen name="stroke_button">2dp</dimen>
+    <dimen name="view_playlist_item_padding">8dp</dimen>
+    <dimen name="button_play_text_size">54sp</dimen>
+    <dimen name="button_play_margin">16dp</dimen>
+
+</resources>
