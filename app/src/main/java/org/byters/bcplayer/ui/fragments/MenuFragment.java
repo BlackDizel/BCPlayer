@@ -1,4 +1,4 @@
-package ru.byters.bcplayer.ui.fragments;
+package org.byters.bcplayer.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ru.byters.bcplayer.R;
+import org.byters.bcplayer.R;
 
 
 public class MenuFragment extends Fragment {

@@ -1,4 +1,4 @@
-package ru.byters.bcplayer.model;
+package org.byters.bcplayer.model;
 
 import android.net.Uri;
 
@@ -9,6 +9,6 @@ public class PlaylistItem {
     public String Duration;
     public String Source;
     public Uri Uri;
-    public int Id;
+    public String Id;
 
 }

@@ -1,18 +1,19 @@
-package ru.byters.bcplayer.controllers;
+package org.byters.bcplayer.controllers;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import java.io.IOException;
 
-import ru.byters.bcplayer.model.PlaylistItem;
+import org.byters.bcplayer.model.PlaylistItem;
 
 public class ControllerPlayer implements OnCompletionListener {
     private MediaPlayer player;
-    private int currentId;
+    private String currentId;
     private Core controller;
 
     public ControllerPlayer(Core controller) {
@@ -20,8 +21,9 @@ public class ControllerPlayer implements OnCompletionListener {
     }
 
     //pos - position in playlist
-    public void playClick(int id) {
+    public void playClick(String id) {
         if (controller == null) return;
+        if (TextUtils.isEmpty(id)) return;
 
         if (player == null) {
             player = new MediaPlayer();
@@ -29,17 +31,16 @@ public class ControllerPlayer implements OnCompletionListener {
             player.setOnCompletionListener(this);
         }
 
-        if (player.isPlaying() && id == currentId)
+        if (player.isPlaying() && id.equals(currentId) && !TextUtils.isEmpty(currentId))
             player.pause();
-        else if (id == currentId) { //player stopped/paused
+        else if (id.equals(currentId) && !TextUtils.isEmpty(currentId)) { //player stopped/paused
             player.seekTo(player.getCurrentPosition());
             player.start();
-        } else { //pos != currentPos && player is playing or paused/stopped
+        } else  //pos != currentPos && player is playing or paused/stopped
             play(id);
-        }
     }
 
-    private void play(int id) {
+    private void play(String id) {
         player.reset();
         Uri uri = controller.getControllerSongs().getSongUri(id);
         if (uri == null) return;
@@ -66,7 +67,7 @@ public class ControllerPlayer implements OnCompletionListener {
     @Nullable
     public PlaylistItem getCurrentSong() {
         if (controller == null) return null;
-        return controller.getControllerSongs().getItem(currentId);
+        return controller.getControllerSongs().getSong(currentId);
     }
 
     public void playClick() {
@@ -75,15 +76,15 @@ public class ControllerPlayer implements OnCompletionListener {
 
     public void playNext() {
         if (controller == null) return;
-        int nextSongId = controller.getControllerSongs().getNextSongId(currentId);
-        if (nextSongId == ControllerSongs.NO_VALUE) return;
+        String nextSongId = controller.getControllerSongs().getNextSongId(currentId);
+        if (TextUtils.isEmpty(nextSongId)) return;
         play(nextSongId);
     }
 
     public void playPrevious() {
         if (controller == null) return;
-        int nextSongId = controller.getControllerSongs().getPreviousSongId(currentId);
-        if (nextSongId == ControllerSongs.NO_VALUE) return;
+        String nextSongId = controller.getControllerSongs().getPreviousSongId(currentId);
+        if (TextUtils.isEmpty(nextSongId)) return;
         play(nextSongId);
     }
 

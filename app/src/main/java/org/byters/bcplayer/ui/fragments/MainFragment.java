@@ -1,4 +1,4 @@
-package ru.byters.bcplayer.ui.fragments;
+package org.byters.bcplayer.ui.fragments;
 
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -16,10 +16,10 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import ru.byters.bcplayer.R;
-import ru.byters.bcplayer.controllers.ControllerPlayer;
-import ru.byters.bcplayer.controllers.Core;
-import ru.byters.bcplayer.model.PlaylistItem;
+import org.byters.bcplayer.R;
+import org.byters.bcplayer.controllers.ControllerPlayer;
+import org.byters.bcplayer.controllers.Core;
+import org.byters.bcplayer.model.PlaylistItem;
 
 
 public class MainFragment extends Fragment implements SeekBar.OnSeekBarChangeListener, OnClickListener {
@@ -124,10 +124,10 @@ public class MainFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
             case R.id.btPlay:
                 controllerPlayer.playClick();
                 break;
-            case R.id.btSkipLeft:
+            case R.id.btSkipRight:
                 controllerPlayer.playNext();
                 break;
-            case R.id.btSkipRight:
+            case R.id.btSkipLeft:
                 controllerPlayer.playPrevious();
                 break;
         }

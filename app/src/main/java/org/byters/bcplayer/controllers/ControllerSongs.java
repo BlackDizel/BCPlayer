@@ -1,4 +1,4 @@
-package ru.byters.bcplayer.controllers;
+package org.byters.bcplayer.controllers;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -9,11 +9,12 @@ import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 
-import ru.byters.bcplayer.model.PlaylistItem;
+import org.byters.bcplayer.model.PlaylistItem;
 
 public class ControllerSongs {
 
-    public static final int NO_VALUE = -1;
+    private static final int NEXT = 1;
+    private static final int PREVIOUS = -1;
     private ArrayList<PlaylistItem> items;
 
     public ControllerSongs(Core controller) {
@@ -57,7 +58,7 @@ public class ControllerSongs {
         ArrayList<PlaylistItem> songs = new ArrayList<>();
         while (cursor.moveToNext()) {
             PlaylistItem i = new PlaylistItem();
-            i.Id = 0;
+            i.Id = cursor.getString(0);
             i.Artist = cursor.getString(1);
             i.Title = cursor.getString(2);
             i.Uri = Uri.parse(cursor.getString(3));
@@ -70,7 +71,7 @@ public class ControllerSongs {
     }
 
     @Nullable
-    public Uri getSongUri(int id) {
+    public Uri getSongUri(String id) {
         PlaylistItem item = getSong(id);
         if (item == null) return null;
         return item.Uri;
@@ -78,39 +79,39 @@ public class ControllerSongs {
 
     //todo cache this
     @Nullable
-    public PlaylistItem getSong(int id) {
+    public PlaylistItem getSong(String id) {
         if (items == null) return null;
         for (PlaylistItem item : items)
-            if (item.Id == id)
+            if (item.Id.equals(id))
                 return item;
         return null;
     }
 
-    public int getNextSongId(int id) {
-        return getOtherSongId(id, 1);
+    @Nullable
+    public String getNextSongId(String id) {
+        return getOtherSongId(id, NEXT);
     }
 
-    public int getPreviousSongId(int id) {
-        return getOtherSongId(id, -1);
+    @Nullable
+    public String getPreviousSongId(String id) {
+        return getOtherSongId(id, PREVIOUS);
     }
 
-    private int getOtherSongId(int id, int i) {
-        if (items == null || items.size() == 0) return NO_VALUE;
+    @Nullable
+    private String getOtherSongId(String id, int nextItem) {
+        if (getItemsSize() == 0) return null;
 
-        int pos = NO_VALUE;
-        for (PlaylistItem item : items)
-            if (item.Id == id) {
-                pos = items.indexOf(item);
-                break;
-            }
+        PlaylistItem item = getSong(id);
+        if (item == null) return null;
+        int pos = items.indexOf(item);
 
-        if (pos == NO_VALUE) return items.get(0).Id;
-
-        int newPos = (i == 1)
+        int newPos = (nextItem == NEXT)
                 ? (++pos) % items.size()
                 : (items.size() - 1 + pos) % items.size();
 
-        return items.get(newPos).Id;
+        PlaylistItem result = getItemByPos(newPos);
+        if (result == null) return null;
+        return result.Id;
     }
 
     public int getItemsSize() {
@@ -118,7 +119,7 @@ public class ControllerSongs {
     }
 
     @Nullable
-    public PlaylistItem getItem(int position) {
+    public PlaylistItem getItemByPos(int position) {
         if (position < 0 || position >= getItemsSize())
             return null;
         return items.get(position);

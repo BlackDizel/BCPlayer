@@ -1,11 +1,11 @@
-package ru.byters.bcplayer.ui;
+package org.byters.bcplayer.ui;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import ru.byters.bcplayer.R;
-import ru.byters.bcplayer.controllers.adapters.PagesAdapter;
+import org.byters.bcplayer.R;
+import org.byters.bcplayer.controllers.adapters.PagesAdapter;
 
 public class MainActivity extends AppCompatActivity {
 

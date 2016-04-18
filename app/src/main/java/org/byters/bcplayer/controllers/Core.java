@@ -1,4 +1,4 @@
-package ru.byters.bcplayer.controllers;
+package org.byters.bcplayer.controllers;
 
 import android.app.Application;
 import android.support.annotation.NonNull;

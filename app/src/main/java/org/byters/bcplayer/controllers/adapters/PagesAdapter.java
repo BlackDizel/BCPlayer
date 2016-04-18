@@ -1,12 +1,12 @@
-package ru.byters.bcplayer.controllers.adapters;
+package org.byters.bcplayer.controllers.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import ru.byters.bcplayer.ui.fragments.MainFragment;
-import ru.byters.bcplayer.ui.fragments.MenuFragment;
-import ru.byters.bcplayer.ui.fragments.PlaylistFragment;
+import org.byters.bcplayer.ui.fragments.MainFragment;
+import org.byters.bcplayer.ui.fragments.MenuFragment;
+import org.byters.bcplayer.ui.fragments.PlaylistFragment;
 
 public class PagesAdapter extends FragmentStatePagerAdapter {
     public PagesAdapter(FragmentManager fm) {
