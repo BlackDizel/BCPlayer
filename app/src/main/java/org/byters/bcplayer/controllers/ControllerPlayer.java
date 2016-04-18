@@ -7,9 +7,9 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import java.io.IOException;
-
 import org.byters.bcplayer.model.PlaylistItem;
+
+import java.io.IOException;
 
 public class ControllerPlayer implements OnCompletionListener {
     private MediaPlayer player;
@@ -71,7 +71,14 @@ public class ControllerPlayer implements OnCompletionListener {
     }
 
     public void playClick() {
-        playClick(currentId);
+        if (!TextUtils.isEmpty(currentId)) {
+            playClick(currentId);
+            return;
+        }
+        PlaylistItem item = controller.getControllerSongs().getItemByPos(0);
+        if (item == null)
+            return;
+        playClick(item.Id);
     }
 
     public void playNext() {
