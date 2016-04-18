@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
     android:orientation="horizontal"
     android:padding="@dimen/view_playlist_item_padding">
 
@@ -13,42 +14,21 @@
 
         <TextView
             android:id="@+id/tvTitle"
+            style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="title" />
+            android:ellipsize="end" />
 
         <TextView
             android:id="@+id/tvArtist"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="artist" />
-
-        <TextView
-            android:id="@+id/tvGenre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="genre" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
-    <FrameLayout
+    <TextView
+        android:id="@+id/tvDuration"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/tvDuration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="10:00" />
-
-        <TextView
-            android:id="@+id/tvSource"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:text="local" />
-
-    </FrameLayout>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
